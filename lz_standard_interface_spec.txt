@@ -1,0 +1,152 @@
+;该接口文件为理正标准数据接口文件格式，可读入理正勘察软件6.4所有的试验数据。
+;英文的分号为注释，各数据之间用Tab键隔开。
+;各数据表中字段的先后顺序可以自定义调整，如果该文件中顺序调整过，其数据必须和调整后的格式对应。
+;对于不需要的数据在数据文件中可以直接跳过。
+;    1. 6.0~6.4 内容一样
+;    2. 6.41(包括)后有GGis项目组的需要,增加了大量的内容. 包括原位试验,扩展了三轴试验接口内容
+;    3. 6.42版增加了固结试验项目
+;        6.42~6.61内容一样
+;    4. 6.7在接口中增加动探内容      
+;    5. 6.8中修改了三轴读入顺序错误. 改为与说明书一致.
+;    6. 6.8/6.81内容一样
+;    7. 8.0版为首钢增加了固结系数/固结模量 
+;           增加了固结自定义内容.方便与土工试验接自定义内容
+;    8. 8.1版增加了三级分层,即土层表示方法增加了次亚层编号;颗分试验增加了1mm粒径组;膨胀试验增加了体缩率指标
+;    9. 9.0版修改固结试验，增加自定义压力级别
+;       新增了版本号，接口文件首行必须是";#VERSION#gicad9.0"
+;
+;1工程数据9.0pb5
+;勘察阶段 建设单位 设计单位 勘察单位 施工单位 工程地点 工程参考原点坐标X 工程参考原点坐标Y 工程标高(m) 起始里程（m） 结束里程（m） 桥中心点段号	桥中心点里程	桥式类型	桥名	坐标系统Y轴为水平方向（默认X轴为水平方向）(0-XY 1-YX)	指北针与Y轴的夹角（度）	底图比例尺	工程执行标准(0-工勘 1-铁路 2-公路 3-水利)	开工日期	完工日期
+#GC#GCKCJD	GCJSDW	GCSJDW	GCKCDW	GCSGDW	GCDD	GCX	GCY	GCBG	GCQSLC	GCJSLC	GCZXDH	GCZXLC	GCZXLX	GCZXSM	GCYX	GCZBZ	GCBLC	GCBZ	KGRQ	WGRQ
+;2钻孔数据
+;*钻孔编号 勘探点类型 X坐标 Y坐标 偏移量 孔口标高 水面标高 勘探深度 探井深度 钻孔直径 勘探开始日期 勘探结束日期 自定义1  自定义2  自定义3
+#ZK#ZKBH	ZKLX	ZKX	ZKY	ZKPIL	ZKBG	ZKHSBG	ZKSD	ZKTJSD	ZKZJ	ZKKSRQ	ZKZZRQ	userdefine1	userdefine2	userdefine3
+;2平板载荷试验
+;试验编号,试验点坐标X(m),试验点坐标Y(m),地面高程(m),试验开始日期,试验终止日期,备注
+#PBZH#ZKBH_ZH	ZKX_ZH	ZKY_ZH	ZKBG_ZH	ZKKSRQ_ZH	ZKZZRQ_ZH	BZ
+;3土层数据
+;*岩土名称 *层底深度 地层厚度 主层编号 亚层编号 次亚层编号 地质时代 地质成因 颜色 密实度 湿度 可塑性 浑圆度 均匀性 风化程度 岩层倾向 岩层倾角 矿物成分 结构构造 包含物 气味 描述 完整程度 坚硬程度 破碎程度 节理发育 节理间距
+#TC#TCMC	TCCDSD	TCHD	TCZCBH	TCYCBH	TCCYCBH	TCDZSD	TCDZCY	TCYS	TCMSD	TCSID	TCKSX	TCHYD	TCJYX	TCFHCD	TCYSQX	TCYSQJ	TCKWCF	TCJGGZ	TCBHW	TCQW	TCMS	TCZTX	TCJYCD	TCPL	TCJLFY	TCJLJJ
+;4静探数据
+;*试验点底深度	*静探类型（1 单桥、2 双桥、3 多桥）  锥头阻力 侧壁摩阻力 比贯入阻力
+#JT#JTDSD	JTLX	JTZTZL	JTCMZ	JTBGRZL	JTKXYL
+;5标贯数据
+;*试验点的底深度（m） 标贯类型 特征值 杆长（m） 一阵击数的长度（m） 一阵击数 	标贯击数	标贯修正系数（中间结果）	修正后的标贯击数	修正否	参与否
+#BG#BGDSD	BGLX	BGTZZ	BGGC	BGYZCD	BGYZJS	BGJS	BGXS	BGXZJS	BGSXZ	CY
+;6动探数据
+;*试验点的底深度（m）  *动探类型(1 2 3)  杆长（m） 试验段长度（m） 一阵击数 贯入度 动探击数 修正后击数  修正否 参与否
+#DT#DTDSD	DTLX	DTGC	DTCD	DTYZJS	DTGRD	DTJS	DTXZJS	DTXZ	CY
+;7水位数据
+;地下水层号 地下水类型(1上层滞水 2潜水 3承压水)	地下水温(度)	稳定水位深度（m） 稳定水位测试日期 初见水位深度(m) 初见水位测试日期 参与否 
+#SW#SWCH	SWXZ	SWDXSW	SWSD	SWCSRQ	CJSWSD	CJSWCSRQ	CY
+;8波速数据
+;*试验点的深度（m） 横波波速（m/s） 纵波波速（m/s） 横波参与否 纵波参与否
+#BS#BSSD	BSHBS	BSZBS	BSSHB	BSSZB
+;9潮湿度数据
+;*深度（m） 潮湿度 参与否
+#CS#CSDSD	CSD	CY
+;10风化数据
+;*深度（m） 风化程度 风化层号	参与否	备注
+#FH#FHSD	FHCD	FHCH	CY	BZ
+;11可塑性数据
+;*深度（m） 可塑性	参与否
+#KS#KSXSD	KSX	CY
+;12扩展数据表1
+;*深度（m） 数值	参与否
+#U1#USRSD	VALUE	CY
+;13扩展数据表2
+;*深度（m） 数值	参与否
+#U2#USRSD	VALUE	CY
+;14裂缝密度数据
+;*试验底深度（m）	裂缝密度（条/m）	起始倾角（度）	终止倾角（度）	参与否	备注
+#LF#LFDSD	LFDMD	LFDQJ	LFDZJ	CY	BZ
+;15渗透系数数据
+;*试验底深度（m）	试验方法	渗透系数K（cm/s）	水平渗透系数Kv（cm/s）	竖向渗透系数Kh（cm/s）	参与否	备注
+#ST#CTXSD	CTXFA	CTXK	CTXSP	CTXSZ	CY	BZ
+;16渗水率数据
+;*试验底深度（m）	试验方法	特征值(0-等于起始透水率 1-大于起始透水率 2-小于起始透水率 3-从起始到终止透水率)	起始透水率q（Lu）	终止透水率q（Lu）	参与否
+#TS#TSLSD	TSLFA	TSTZZ	TSLV	TSLV1	CY
+;17岩心采取率数据
+;*深度（m）	岩心采取率（%）	RQD（%）	采取率参与否	RQD参与否	备注
+#YR#YRSD	YRCQL	YRRQD	YRSCQL	YRSRQD	BZ
+;18十字板剪切数据
+;*试验点底深度（m）	试验方法	剪切强度（kPa）	残余剪切强度（kPa）	参与否
+#SB#SZBSD	SZBFA	SZBQD	SZBCQD	CY
+;19常规试验取样数据
+;*取样编号 取样深度 取样长度 取样类型 质量密度 土粒比重 含水量 液限 塑限 最小密度 最大密度 水上休止角 水下休止角 渗透系数 水平渗透系数 垂直渗透系数 单轴抗压强度 自然抗压强度 饱和抗压强度 抗拉强度 抗剪强度 软化系数 桩侧摩阻力 桩端摩阻力 十字板剪切强度 无侧限抗压强度（原状） 无侧限抗压强度（重塑） 灵敏度 透水率 剪切波速 纵波波速 动弹性模量 动剪切模量 动泊松比 回弹模量 有机质含量 含盐量 承载力比CBR2.5 承载力比CBR5 弹性抗力系数 吸水率 饱和吸水率
+#QY#QYBH	QYSD	QYHD	QYLX	QYZLMD	QYBZ	QYHSL	QYYX	QYSY	QYZXMD	QYZDMD	QYXZJ1	QYXZJ2	QYSTXS	QYSPSTXS	QYCZSTXS	QYDZKYQD	QYZRKYQD	QYBHKYQD	QYKLQD	QYKJQD	QYRHQD	QYZCMZL	QYZDZL	QYSZBQD	QYKYDYZ	QYKYDCS	QYLMD	QYTSL	QYJQBS	QYZBBS	QYDTML	QYDJML	QYBSB	QYHTML	QYYJZHL	QYHYL	QYCZBCBR25	QYCZBCBR5	QYTXKLXS	QYXSL	QYBHXSL
+;20湿陷系数数据
+;湿陷浸水压力 湿陷系数δs 压力湿陷系数δ.2s 压力湿陷系数δ.3s 自重湿陷系数 湿陷起始压力 
+#SX#SXJSYL	SXXS	SXSX02	SXSX03	SXZXS	SXQSYL
+;21竖向固结试验数据
+;试验方法、试样的高度、压缩系数1、压缩模量1、压缩系数2、压缩模量2、压缩系数3、压缩模量3、压缩系数4、压缩模量4、压缩系数5、压缩模量5、压缩系数6、压缩模量6、压缩系数7、压缩模量7、压缩系数8、压缩模量8、压缩系数9、压缩模量9、压缩系数10、压缩模量10、压缩系数11、压缩模量11、压缩系数12、压缩模量12、压缩系数13、压缩模量13、压缩系数14、压缩模量14、压缩系数15、压缩模量15、压缩系数16、压缩模量16、压缩系数17、压缩模量17、压缩系数18、压缩模量18、压缩系数19、压缩模量19、压缩系数20、压缩模量20、压缩系数21、压缩模量21、压缩系数22、压缩模量22、压缩系数23、压缩模量23、压缩系数24、压缩模量24、压缩系数25、压缩模量25、压缩后的孔隙比（压力1）、压缩后的孔隙比（压力2）、压缩后的孔隙比（压力3）、压缩后的孔隙比（压力4）、压缩后的孔隙比（压力5）、压缩后的孔隙比（压力6）、压缩后的孔隙比（压力7）、压缩后的孔隙比（压力8）、压缩后的孔隙比（压力9）、压缩后的孔隙比（压力10）、压缩后的孔隙比（压力11）、压缩后的孔隙比（压力12）、压缩后的孔隙比（压力13）、压缩后的孔隙比（压力14）、压缩后的孔隙比（压力15）、压缩后的孔隙比（压力16）、压缩后的孔隙比（压力17）、压缩后的孔隙比（压力18）、压缩后的孔隙比（压力19）、压缩后的孔隙比（压力20）、压缩后的孔隙比（压力21）、压缩后的孔隙比（压力22）、压缩后的孔隙比（压力23）、压缩后的孔隙比（压力24）、压缩后的孔隙比（压力25）、变形模量、弹性模量、泊松比、压缩指数、回弹指数、前期固结压力、孔隙水压力A、孔隙水压力B、竖向固结系数、水平向固结系数、竖向固结系数（压力1）(cm2/s)、竖向固结系数（压力2）(cm2/s)、竖向固结系数（压力3）(cm2/s)、竖向固结系数（压力4）(cm2/s)、竖向固结系数（压力5）(cm2/s)、竖向固结系数（压力6）(cm2/s)、竖向固结系数（压力7）(cm2/s)、竖向固结系数（压力8）(cm2/s)、竖向固结系数（压力9）(cm2/s)、竖向固结系数（压力10）(cm2/s)、竖向固结系数（压力11）(cm2/s)、竖向固结系数（压力12）(cm2/s)、竖向固结系数（压力13）(cm2/s)、竖向固结系数（压力14）(cm2/s)、竖向固结系数（压力15）(cm2/s)、竖向固结系数（压力16）(cm2/s)、竖向固结系数（压力17）(cm2/s)、竖向固结系数（压力18）(cm2/s)、竖向固结系数（压力19）(cm2/s)、竖向固结系数（压力20）(cm2/s)、竖向固结系数（压力21）(cm2/s)、竖向固结系数（压力22）(cm2/s)、竖向固结系数（压力23）(cm2/s)、竖向固结系数（压力24）(cm2/s)、竖向固结系数（压力25）(cm2/s)
+#GJ#GJSYFF	GJSYGD	GJXSXM1	GJMLXM1	GJXSXM2	GJMLXM2	GJXSXM3	GJMLXM3	GJXSXM4	GJMLXM4	GJXSXM5	GJMLXM5	GJXSXM6	GJMLXM6	GJXSXM7	GJMLXM7	GJXSXM8	GJMLXM8	GJXSXM9	GJMLXM9	GJXSXM10	GJMLXM10	GJXSXM11	GJMLXM11	GJXSXM12	GJMLXM12	GJXSXM13	GJMLXM13	GJXSXM14	GJMLXM14	GJXSXM15	GJMLXM15	GJXSXM16	GJMLXM16	GJXSXM17	GJMLXM17	GJXSXM18	GJMLXM18	GJXSXM19	GJMLXM19	GJXSXM20	GJMLXM20	GJXSXM21	GJMLXM21	GJXSXM22	GJMLXM22	GJXSXM23	GJMLXM23	GJXSXM24	GJMLXM24	GJXSXM25	GJMLXM25	GJKXBXM1	GJKXBXM2	GJKXBXM3	GJKXBXM4	GJKXBXM5	GJKXBXM6	GJKXBXM7	GJKXBXM8	GJKXBXM9	GJKXBXM10	GJKXBXM11	GJKXBXM12	GJKXBXM13	GJKXBXM14	GJKXBXM15	GJKXBXM16	GJKXBXM17	GJKXBXM18	GJKXBXM19	GJKXBXM20	GJKXBXM21	GJKXBXM22	GJKXBXM23	GJKXBXM24	GJKXBXM25	GJBXML	GJTXML	GJBSB	GJYSZS	GJHTZS	GJQQGJYL	GJKXSYLXSA	GJKXSYLXSB	GJSXXISHU	GJHXXISHU	SXGJXS1	SXGJXS2	SXGJXS3	SXGJXS4	SXGJXS5	SXGJXS6	SXGJXS7	SXGJXS8	SXGJXS9	SXGJXS10	SXGJXS11	SXGJXS12	SXGJXS13	SXGJXS14	SXGJXS15	SXGJXS16	SXGJXS17	SXGJXS18	SXGJXS19	SXGJXS20	SXGJXS21	SXGJXS22	SXGJXS23	SXGJXS24	SXGJXS25
+;22竖向固结试验项目表
+;序号 垂直压力 压缩变形值
+%GJ%XH	GJCZYL	GJYSBX
+;23竖向固结试验压力级别表
+;压力1（kPa）、压力2（kPa）、压力3（kPa）、压力4（kPa）、压力5（kPa）、压力6（kPa）、压力7（kPa）、压力8（kPa）、压力9（（kPa）、压力10（kPa）、压力11（kPa）、压力12（kPa）、压力13（kPa）、压力14（kPa）、压力15（kPa）、压力16（kPa）、压力17（kPa）、压力18（kPa）、压力19（（kPa）、压力20（kPa）、压力21（kPa）、压力22（kPa）、压力23（kPa）、压力24（kPa）、压力25（kPa）
+%SGJYL%YL1	YL2	YL3	YL4	YL5	YL6	YL7	YL8	YL9	YL10	YL11  YL12  YL13  YL14  YL15  YL16  YL17  YL18  YL19  YL20	YL21  YL22  YL23  YL24  YL25
+;24竖向固结试验数据(考虑自重压力)
+;试验方法、试样的高度、自重压力、压缩系数（P0- （P0+压力1））、压缩模量（P0- （P0+压力1））、压缩系数（P0- （P0+压力2））、压缩模量（P0- （P0+压力2））、压缩系数（P0- （P0+压力3））、压缩模量（P0- （P0+压力3））、压缩系数（P0- （P0+压力4））、压缩模量（P0- （P0+压力4））、压缩系数（P0- （P0+压力5））、压缩模量（P0- （P0+压力5））、压缩系数（P0- （P0+压力6））、压缩模量（P0- （P0+压力6））、压缩系数（P0- （P0+压力7））、压缩模量（P0- （P0+压力7））、压缩系数（P0- （P0+压力8））、压缩模量（P0- （P0+压力8））、压缩系数（P0- （P0+压力9））、压缩模量（P0- （P0+压力9））、压缩系数（P0- （P0+压力10））、压缩模量（P0- （P0+压力10））、压缩系数（P0- （P0+压力11））、压缩模量（P0- （P0+压力11））、压缩系数（P0- （P0+压力12））、压缩模量（P0- （P0+压力12））、压缩系数（P0- （P0+压力13））、压缩模量（P0- （P0+压力13））、压缩系数（P0- （P0+压力14））、压缩模量（P0- （P0+压力14））、压缩系数（P0- （P0+压力15））、压缩模量（P0- （P0+压力15））、压缩系数（P0- （P0+压力16））、压缩模量（P0- （P0+压力16））、压缩系数（P0- （P0+压力17））、压缩模量（P0- （P0+压力17））、压缩系数（P0- （P0+压力18））、压缩模量（P0- （P0+压力18））、压缩系数（P0- （P0+压力19））、压缩模量（P0- （P0+压力19））、压缩系数（P0- （P0+压力20））、压缩模量（P0- （P0+压力20））、压缩系数（P0- （P0+压力21））、压缩模量（P0- （P0+压力21））、压缩系数（P0- （P0+压力22））、压缩模量（P0- （P0+压力22））、压缩系数（P0- （P0+压力23））、压缩模量（P0- （P0+压力23））、压缩系数（P0- （P0+压力24））、压缩模量（P0- （P0+压力24））、压缩系数（P0- （P0+压力25））、压缩模量（P0-（P0+压力25））、压缩后的孔隙比（P0）、压缩后的孔隙比（P0+压力1）、压缩后的孔隙比（P0+压力2）、压缩后的孔隙比（P0+压力3）、压缩后的孔隙比（P0+压力4）、压缩后的孔隙比（P0+压力5）、压缩后的孔隙比（P0+压力6）、压缩后的孔隙比（P0+压力7）、压缩后的孔隙比（P0+压力8）、压缩后的孔隙比（压力P0+压力9）、压缩后的孔隙比（压力P0+压力10）、压缩后的孔隙比（P0+压力11）、压缩后的孔隙比（P0+压力12）、压缩后的孔隙比（P0+压力13）、压缩后的孔隙比（P0+压力14）、压缩后的孔隙比（P0+压力15）、压缩后的孔隙比（P0+压力16）、压缩后的孔隙比（P0+压力17）、压缩后的孔隙比（P0+压力18）、压缩后的孔隙比（压力P0+压力19）、压缩后的孔隙比（压力P0+压力20）、压缩后的孔隙比（P0+压力21）、压缩后的孔隙比（P0+压力22）、压缩后的孔隙比（P0+压力23）、压缩后的孔隙比（P0+压力24）、压缩后的孔隙比（P0+压力25）、变形模量、弹性模量、泊松比、压缩指数、回弹指数、前期固结压力、孔隙水压力A、孔隙水压力B、竖向固结系数、水平向固结系数、竖向固结系数（P0+压力1）(cm2/s)、竖向固结系数（P0+压力2）(cm2/s)、竖向固结系数（P0+压力3）(cm2/s)、竖向固结系数（P0+压力4）(cm2/s)、竖向固结系数（P0+压力5）(cm2/s)、竖向固结系数（P0+压力6）(cm2/s)、竖向固结系数（P0+压力7）(cm2/s)、竖向固结系数（P0+压力8）(cm2/s)、竖向固结系数（P0+压力9）(cm2/s)、竖向固结系数（P0+压力10）(cm2/s)、竖向固结系数（P0+压力11）(cm2/s)、竖向固结系数（P0+压力12）(cm2/s)、竖向固结系数（P0+压力13）(cm2/s)、竖向固结系数（P0+压力14）(cm2/s)、竖向固结系数（P0+压力15）(cm2/s)、竖向固结系数（P0+压力16）(cm2/s)、竖向固结系数（P0+压力17）(cm2/s)、竖向固结系数（P0+压力18）(cm2/s)、竖向固结系数（P0+压力19）(cm2/s)、竖向固结系数（P0+压力20）(cm2/s)、竖向固结系数（P0+压力21）(cm2/s)、竖向固结系数（P0+压力22）(cm2/s)、竖向固结系数（P0+压力23）(cm2/s)、竖向固结系数（P0+压力24）(cm2/s)、竖向固结系数（P0+压力25）(cm2/s)
+#GJBJ#GJSYFF	GJSYGD	GJZZP0	GJXSXM1	GJMLXM1	GJXSXM2	GJMLXM2	GJXSXM3	GJMLXM3	GJXSXM4	GJMLXM4	GJXSXM5	GJMLXM5	GJXSXM6	GJMLXM6	GJXSXM7	GJMLXM7	GJXSXM8	GJMLXM8	GJXSXM9	GJMLXM9	GJXSXM10	GJMLXM10	GJXSXM11	GJMLXM11	GJXSXM12	GJMLXM12	GJXSXM13	GJMLXM13	GJXSXM14	GJMLXM14	GJXSXM15	GJMLXM15	GJXSXM16	GJMLXM16	GJXSXM17	GJMLXM17	GJXSXM18	GJMLXM18	GJXSXM19	GJMLXM19	GJXSXM20	GJMLXM20	GJXSXM21	GJMLXM21	GJXSXM22	GJMLXM22	GJXSXM23	GJMLXM23	GJXSXM24	GJMLXM24	GJXSXM25	GJMLXM25	GJKXBP0	GJKXBXM1	GJKXBXM2	GJKXBXM3	GJKXBXM4	GJKXBXM5	GJKXBXM6	GJKXBXM7	GJKXBXM8	GJKXBXM9	GJKXBXM10	GJKXBXM11	GJKXBXM12	GJKXBXM13	GJKXBXM14	GJKXBXM15	GJKXBXM16	GJKXBXM17	GJKXBXM18	GJKXBXM19	GJKXBXM20	GJKXBXM21	GJKXBXM22	GJKXBXM23	GJKXBXM24	GJKXBXM25	GJBXML	GJTXML	GJBSB	GJYSZS	GJHTZS	GJQQGJYL	GJKXSYLXSA	GJKXSYLXSB	GJSXXISHU	GJHXXISHU	SXGJXS1	SXGJXS2	SXGJXS3	SXGJXS4	SXGJXS5	SXGJXS6	SXGJXS7	SXGJXS8	SXGJXS9	SXGJXS10	SXGJXS11	SXGJXS12	SXGJXS13	SXGJXS14	SXGJXS15	SXGJXS16	SXGJXS17	SXGJXS18	SXGJXS19	SXGJXS20	SXGJXS21	SXGJXS22	SXGJXS23	SXGJXS24	SXGJXS25
+;25竖向固结试验项目表(考虑自重压力)
+;序号 垂直压力 压缩变形值
+%GJBJ%XH	GJCZYL	GJYSBX
+;26竖向固结试验压力级别表(考虑自重压力)
+;压力1（kPa）、压力2（kPa）、压力3（kPa）、压力4（kPa）、压力5（kPa）、压力6（kPa）、压力7（kPa）、压力8（kPa）、压力9（（kPa）、压力10（kPa）、压力11（kPa）、压力12（kPa）、压力13（kPa）、压力14（kPa）、压力15（kPa）、压力16（kPa）、压力17（kPa）、压力18（kPa）、压力19（（kPa）、压力20（kPa）、压力21（kPa）、压力22（kPa）、压力23（kPa）、压力24（kPa）、压力25（kPa）
+%SGJYLBJ%YL1	YL2	YL3	YL4	YL5	YL6	YL7	YL8	YL9	YL10	YL11	YL12	YL13	YL14	YL15	YL16	YL17	YL18	YL19	YL20	YL21	YL22	YL23	YL24	YL25
+;27水平固结试验数据
+;压缩系数（压力1）、压缩模量（压力1）、压缩系数（压力2）、压缩模量（压力2）、压缩系数（压力3）、压缩模量（压力3）、压缩系数（压力4）、压缩模量（压力4）、压缩系数（压力5）、压缩模量（压力5）、压缩系数（压力6）、压缩模量（压力6）、压缩系数（压力7）、压缩模量（压力7）、压缩系数（压力8）、压缩模量（压力8）、压缩系数（压力9）、压缩模量（压力9）、压缩系数（压力10）、压缩模量（压力10）、压缩后的孔隙比（压力1）、压缩后的孔隙比（压力2）、压缩后的孔隙比（压力3）、压缩后的孔隙比（压力4）、压缩后的孔隙比（压力5）、压缩后的孔隙比（压力6）、压缩后的孔隙比（压力7）、压缩后的孔隙比（压力8）、压缩后的孔隙比（压力9）、压缩后的孔隙比（压力10）、水平固结系数（压力1）(cm2/s)、水平固结系数（压力2）(cm2/s)、水平固结系数（压力3）(cm2/s)、水平固结系数（压力4）(cm2/s)、水平固结系数（压力5）(cm2/s)、水平固结系数（压力6）(cm2/s)、水平固结系数（压力7）(cm2/s)、水平固结系数（压力8）(cm2/s)、水平固结系数（压力9）(cm2/s)、水平固结系数（压力10）(cm2/s)、水平变形模量、水平弹性模量、水平泊松比、压缩指数、水平回弹指数、水平孔隙水压力A、水平孔隙水压力B
+#SG#SPYSXS1	SPYSML1	SPYSXS2	SPYSML2	SPYSXS3	SPYSML3	SPYSXS4	SPYSML4	SPYSXS5	SPYSML5	SPYSXS6	SPYSML6	SPYSXS7	SPYSML7	SPYSXS8	SPYSML8	SPYSXS9	SPYSML9	SPYSXS10	SPYSML10	SPKXB1	SPKXB2	SPKXB3	SPKXB4	SPKXB5	SPKXB6	SPKXB7	SPKXB8	SPKXB9	SPKXB10	GBXML	GTXML	GBSB	GYSZS	GHTZS	GKSXYLXSA	GKXSYLXSB
+;28水平固结试验压力级别表
+;压力1（kPa）、压力2（kPa）、压力3（kPa）、压力4（kPa）、压力5（kPa）、压力6（kPa）、压力7（kPa）、压力8（kPa）、压力9（（kPa）、压力10（kPa）
+%HGJYL%YL1	YL2	YL3	YL4	YL5	YL6	YL7	YL8	YL9	YL10
+;29颗分试验数据
+;试验方法 >800颗粒组成 >400颗粒组成 >200颗粒组成 >60颗粒组成 >40颗粒组成 >20颗粒组成 >10颗粒组成 >5颗粒组成 >2颗粒组成 >1颗粒组成 >0.5颗粒组成 >0.25颗粒组成 >0.1颗粒组成 >0.075颗粒组成 >0.074颗粒组成 >0.05颗粒组成 >0.01颗粒组成 >0.005颗粒组成 >0.002颗粒组成 >0颗粒组成 d10 d15 d30 d50 d60 d85 d90 d95 粘粒含量 不均匀系数 曲率系数 试验土样的质量
+#KF#KLSYFF	KL800	KL400	KL200	KL60	KL40	KL20	KL10	KL5	KL2	KL1	KL_5	KL_25	KL_1	KL_075	KL_074	KL_05	KL_01	KL_005	KL_002	KL0	KLD10	KLD15	KLD30	KLD50	KLD60	KLD85	KLD90	KLD95	KLHL	KLBJXS	KLQLXS	KLTYZL
+;30颗分试验项目数据
+;序号 粒径 筛余质量
+%KF%XH	KLLJ	KLSYZL
+;31直剪试验数据
+;试验方法 环刀面积 快剪摩擦角 快剪粘聚力 固结快剪摩擦角 固结快剪粘聚力 慢剪摩擦角 慢剪粘聚力
+#ZJ#ZJSYFF	ZJMJ	ZJNMJ00	ZJNJL00	ZJNMJ10	ZJNJL10	ZJNMJ11	ZJNJL11
+;32直剪试验项目数据
+;序号 垂直压力 应变圈系数 应变圈读数差 抗剪强度
+%ZJ%XH	ZJCZYL	ZJYBXS	ZJYBDS	ZJKJQD
+;33水质试验数据
+;水源	取水深度（m）	气温（0C）	水温（0C）	室温（0C）	取水日期	实验日期	报告日期	气味	口味	色度	透明度	浑浊度	判定结果(备注)
+#ZH#SZSA	SZQSSD	SZQW	SZSW	SZHW	SZQSRQ	SZSYRQ	SZBGRQ	SZQN	SZKW	SZSD	SZTMD	SZHZD	SZPDJG
+;34水质试验项目数据
+;*测试项目	*测试结果	测试类别	测试方法
+%ZH%SZCSXM	SZCSJG	SZCSLB	SZCSFF
+;35旁压试验数据表
+;旁压编号 试验点深度（m） 旁压仪器编号 旁压试验日期 量管水面离孔口距离Zc(m) 旁压器中静水压力(kPa) 旁压水平侧压力σHs(MPa) 土压力P0(Kpa) 临塑压力Pf(Kpa) 极限压力PL(Kpa)	临塑地基承载力f01(Kpa)	极限地基承载力f02(Kpa)	不排水抗剪强度Cu(Kpa)	侧压力系数K0	旁压模量EM(MPa)	参与否
+#PY#PYBH	PYDSD	PYYQBH	PYSYRQ	PYKKJL	PYJSYL	PYSPCYL	PYTYL	PYLSYL	PYJXYL	PYLSCZL	PYJXCZL	PYKJQD	PYCYLXS	PYML	CY
+;36旁压试验项目表
+;*序号 压力p(kPa) 体积V(cm3) 体积V60''-V30''(cm3)
+%PY%PYXH	PYYL	PYTJ1	PYTJ2
+;37三轴数据表
+;试验方法(不固结不排水剪 固结不排水剪 固结排水剪) 试验日期 总抗剪强度指标（内摩擦角）0	总抗剪强度指标（粘聚力）0  有效抗剪强度指标（内摩擦角）1 有效抗剪强度指标（粘聚力）1 总抗剪强度指标（内摩擦角）1 总抗剪强度指标（粘聚力）1 有效抗剪强度指标（粘聚力）2 有效抗剪强度指标（内摩擦角）2 总抗剪强度指标（粘聚力）0参与	总抗剪强度指标（内摩擦角）0参与	有效抗剪强度指标（粘聚力）1参与	有效抗剪强度指标（内摩擦角）1参与	总抗剪强度指标（粘聚力）1参与	总抗剪强度指标（内摩擦角）1参与	有效抗剪强度指标（粘聚力）2参与 有效抗剪强度指标（内摩擦角）2参与
+#SZ#SYFF	SYRQ	SHZF01	SHZC00	SHZF11	SHZC10	SHZF21	SHZC20	SHZC30	SHZF31	SHZC00_	SHZF01_	SHZC10_	SHZF11_	SHZC20_	SHZF21_	SHZC30_	SHZF31_
+;38三轴试验项目表
+;*试件编号 *加荷序号 围压 （kPa） 试样的原始高度 （mm） 试样的原始直径 （mm）	测力环弹性系数C（N/0.01mm）	初始孔隙水压力 （kPa）	测力环测微表读数R（0.01mm）	轴向应变测微表读数 （0.01mm）	试样体积变化	孔隙水压力表读数 （kPa）	量水管读数Q	绘制摩尔圆的参数（0：仅绘制应力-应变曲线绘制；1：仅绘制摩尔圆；2：前两者均绘制；3：不绘制）
+%SZ%SJBH	SHJHXH	SHWY	SHYSGD	SHYSZJ	SHCXS	SHKXYL	SHCLHDS	SHZXDS	SHTJBH	SHKXDS	SHLSDS	SHCSTZ
+;39膨胀试验数据表
+;自由膨胀率 荷载下的膨胀率 收缩系数 膨胀压力 线胀率 体缩率
+#PZ#PZZYPZL	PZHZPZL	PZSSXS	PZPZYL	PZXZL	PZTSL
+;40岩石试验取样数据
+;取样编号 所在地层  取样顶深度 取样长度  现场鉴定名称  含水率w(%) 天然密度ρ(g/cm3)  干密度ρd(g/cm3)  颗粒密度ρ(g/cm3)  吸水率l(%) 饱和吸水率w2(%)  天然单轴抗压强度R(MPa)  烘干单轴抗压强度Rc(MPa) 饱和单轴抗压强度Rb(MPa) 软化系数KR  抗拉强度(劈裂法)(MPa) 抗剪断强度_黏聚力(MPa)  抗剪断强度_内摩擦角(°)  抗剪断强度(直剪)_黏聚力(MPa)  抗剪断强度(直剪)_内摩擦角(°) 膨胀性试验_膨胀率(%)  膨胀性试验_膨胀力(MPa)  膨胀性试验_耐崩解指数(%)  声波速度_纵波波速(m/s)  声波速度_横波波速(m/s)  动弹性模量Ed(MPa)  动剪切模量Gd(MPa)  动泊松比ud  弹性模量E(MPa)  剪切模量G(MPa)  泊松比u  膨胀性试验判定结果 特殊项目1 特殊项目2 特殊项目3 
+#YY#QYBH	QYDC	QYSDTOP	QYCD	XCJDMC	HSL	TRMD	GMD	KLMD	XSL	BHXSL	DZKYQD_TR	DZKYQD_HG	DZKYQD_BH	RHXS	KLSY	KJDQD_NJL	KJDQD_NMCJ	KJQJZJ_NJL	KJQJZJ_NMCJ	PZXSY_PZLV	PZXSY_PZLI	PZXSY_NBJZS	SBBS_ZBBS	SBBS_HBBS	YSDTML	YSDJML	YSDBSB	YSTXML	YSJQML	YSBSB	PZXSY_PDJG	TSXM1	TSXM2	TSXM3
+;41平板载荷数据表
+;*载荷试验点编号	*压板形状 (0 表示圆形,1表示方形)	试验点地面标高（m）	载荷试验点位置	载荷试验点深度（m）	试验土层名称	试验土层泊松比	压板面积(cm^2)	设备型号	设备自重(kg)	试验加载方式(0 分级加载 ,1 快速加载)	观测仪器 (0 手工记录,1 自动记录)	稳定标准	开始实验日期	试验时数(h)	地下水埋深	试验原始曲线的截距SO （初始下沉量）	试验原始曲线的斜率C	试验曲线用户修正斜率c'	试验点界限应力 Po (kpa) (弹性最大压力)	试验点极限应力 Pu (kpa)	变形模量(Eo)	试验点处的承载力(p)	是否修正
+#PH#ZHBH	ZHYBXZ	ZHBG	ZHSYWZ	ZHSYSD	ZHTCMC	ZHBSB	ZHYBMJ	ZHSBXH	ZHSBZZ	ZHJZFS	ZHGCYQ	ZHWDBZ	ZHKSRQ	ZHSYSS	ZHDXSS	ZHYSJJ	ZHYSXL	ZHXZXL	ZHTXYL	ZHJXYL	ZHBXML	ZHCZL	ZHSFXZ
+;42平板载荷试验项目表
+;*载荷试验土样取样编号 *加载试验前后的取样 (0表示前,1表示后)	室内参	天然含水量W(%)	取样天然重度 r(KN/m^3)	试样饱和度 Sr(%)	试样天然孔隙比e	试样液限 Wl (%)	试样塑限 Wp (%)	试样液性指数 Il	试样塑性指数 Ip	土样压缩系数 (MPa)
+%PH%ZHQYBH	ZHQYXH	ZHSNCY	ZHTRHSL	ZHTRZD	ZHBHD	ZHTRKXB	ZHYX	ZHSX	ZHYXZS	ZHSXZS	ZHYSXS
+;43平板载荷成果表
+;*载荷加荷序号	*是否参与	载荷加荷大小(kpa)	该荷载的作用时间(min)	累计沉降量(mm)	增量沉降量(mm)	校正沉降量(mm)	校正后增量沉降量(mm)
+%PP%ZHZHXH	ZHCGCY	ZHZHDX	ZHSJCD	ZHLJCJL	ZHZLCJL	ZHJZCJL	ZHJZZL
+;44平板载荷试验记录表
+;*载荷加荷序号	*读数记录序号(每级荷载下)	该时刻的读数是否参与计算(是1,否0)	读数时间 t (min)	读数时刻的沉降量 St	记录沉降量修正值(主要用于快速试验法)	沉降是否稳定
+%PJ%ZHZHXH	ZHJLXH	ZHSKCY	ZHJHSJ	ZHJHCJL	ZHJHCJLXZ	ZHCJWD
